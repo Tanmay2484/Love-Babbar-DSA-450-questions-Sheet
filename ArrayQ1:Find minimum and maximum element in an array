@@ -1,0 +1,25 @@
+
+/* Find minimum and maximum element in an array
+   Question Link: https://practice.geeksforgeeks.org/problems/find-minimum-and-maximum-element-in-an-array4428/1
+   gfg article link: https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+    N = 6
+    A[] = {3, 2, 1, 56, 10000, 167}
+    Output:
+    min = 1, max =  10000
+*/
+
+pair<long long, long long> getMinMax(long long a[], int n) {
+    long long int minNum=INT_MAX,maxNum=INT_MIN;
+    for(int i=0;i<n;i++){
+        if(minNum>a[i]){
+            minNum=a[i];
+        }
+    }
+    for(int i=0;i<n;i++){
+        if(maxNum<a[i]){
+            maxNum=a[i];
+        }
+    }
+    return {minNum,maxNum};
+    
+}
