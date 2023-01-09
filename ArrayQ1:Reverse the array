@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+/* Reverse the array
+   
+   gfg article link: https://www.geeksforgeeks.org/write-a-program-to-reverse-an-array-or-string/
+   Input  : arr[] = {1, 2, 3}
+   Output : arr[] = {3, 2, 1}
+*/
+int main() {
+    int arr[]={1,2,3,4,6};
+    int n=sizeof(arr)/sizeof(int);
+    int i=0,j=n-1;
+    while(i<j){
+        //swap(arr[i],arr[j]);
+        //swaping with using third variable 
+        //int temp=arr[i]; 
+        //arr[i]=arr[j];
+        //arr[j]=temp;
+        //swaping without variable
+        arr[i]=arr[i]+arr[j]; STEP  //1.x = x + y.
+         arr[j]=arr[i]-arr[j];STEP  //2.y= x - y.
+        arr[i]=arr[i]-arr[j];STEP   //3.x =x - y.
+        i++;j--;
+    }
+    for(int k=0;k<n;k++){
+        cout<<arr[k]<<" ";
+    }
+}
