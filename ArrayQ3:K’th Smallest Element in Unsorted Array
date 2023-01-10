@@ -1,0 +1,38 @@
+/* K’th Smallest Element in Unsorted Array
+   Link: https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1
+   gfg article link: https://www.geeksforgeeks.org/kth-smallest-largest-element-in-unsorted-array-expected-linear-time/
+   Input: arr[] = {7, 10, 4, 3, 20, 15}
+       k = 3
+        Output: 7
+
+        Input: arr[] = {7, 10, 4, 3, 20, 15}
+        k = 4
+        Output: 10
+*/
+
+class Solution{
+    public:
+    // arr : given array
+    // l : starting index of the array i.e 0
+    // r : ending index of the array i.e size-1
+    // k : find kth smallest element and return using this function
+    int kthSmallest(int arr[], int l, int r, int k) {
+        //code here
+        priority_queue<int>pq;//priority queue is max heap automatically means max to min 
+        int n=r+1;//size of this array;
+        
+        //we will traverse the array for first k elements 0 to  k-1
+        for(int i=0;i<k;i++){
+            pq.push(arr[i]);
+        }//so first k elements are pushed then it will arranged by self in max heap 
+        
+        //then we will travarse the remain elenmets from  k to n-1
+        for(int j=k;j<n;j++){
+            //checking that if in the max heap the bigger number present then we will pop and add the smaller number
+            if(pq.top()>arr[j]){
+                pq.pop();
+                pq.push(arr[j]);
+            }
+        }//so we will get the kth smallest number in the max heap top
+        return pq.top();
+    }
