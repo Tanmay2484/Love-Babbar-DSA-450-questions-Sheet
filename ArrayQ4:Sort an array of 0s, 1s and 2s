@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+/* Sort an array of 0s, 1s and 2s
+   Question Link:https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1
+   gfg article link: https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+    Input: {0, 1, 2, 0, 1, 2}
+    Output: {0, 0, 1, 1, 2, 2}
+
+    Input: {0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1}
+    Output: {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2}
+*/
+
+void sort012(int a[], int n)
+    {
+        // code here 
+        int low=0,mid=0,high=n-1;// three pointer problem aslo called dutch flag problem
+        while(mid<=high){ // mid is for 1 ,then low is for 0 ,then high is for 2 
+            if(a[mid]==0){
+                swap(a[low++],a[mid++]);//if mid==0 then we want the zero in left so swap it
+            }
+            else if(a[mid]==1){//if mid 1 no need to swap because 1 will be in the mid so mid++
+                mid++;
+            }
+            else if(a[mid]==2){// if mid is 2 then we want it in right so swap then high value decrement
+                swap(a[mid],a[high--]);// no need to increment mid
+            }
+        }
+    }
+    void printa(int a[],int n){
+        for(int i=0;i<n;i++){
+            cout<<a[i]<<" ";
+        }
+    }
+
+int main() {
+    int a[]={1,0,2,2,0,1,2,1,1,2,0};
+    int n=sizeof(a)/sizeof(int);
+    sort012(a,n);
+    printa(a,n);
+}
