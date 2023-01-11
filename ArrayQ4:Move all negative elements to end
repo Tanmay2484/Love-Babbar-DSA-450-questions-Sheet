@@ -1,0 +1,51 @@
+/* Move all negative elements to end
+   Question Link: https://practice.geeksforgeeks.org/problems/move-all-negative-elements-to-end1813/1
+   gfg article link: https://www.geeksforgeeks.org/move-negative-numbers-beginning-positive-end-constant-extra-space/
+   Input : 
+    N = 8
+    arr[] = {1, -1, 3, 2, -7, -5, 11, 6 }
+    Output : 
+    1  3  2  11  6  -1  -7  -5
+*/
+ //soluation 1
+ void segregateElements(int arr[],int n)
+    {
+// The task is place all negative element at the end of array with out changing the order of the elements in the array
+        vector<int>v;
+        for(int i=0;i<n;i++){//takig all the positive elements including zeroes
+            if(arr[i]>=0){
+                v.push_back(arr[i]);
+            }
+        }
+        for(int i=0;i<n;i++){//taking the negetive elements in the v vector at the end
+            if(arr[i]<0){
+                v.push_back(arr[i]);
+            }
+        }
+        
+        for(int i=0;i<n;i++){// just coping all the elements of v vector to the array 
+            arr[i]=v[i];
+        }
+    }
+//soluation 2
+void segregateElements(int arr[],int n)
+    {
+// The task is place all negative element at the end of array
+// here we are changing the order of the elements
+        int low=0,high=n-1;
+        while(low<high){//here will be 4 cond we are placing all the negetive elements at the end of the array
+            if(arr[low]<0 && arr[high]>0){ //low is negetive and high is positive then swap
+                swap(arr[low],arr[high]);
+                low++;high--;
+            }
+            else if(arr[low]>0 && arr[high]<0){//low is positive and high is negetive then low++
+                low++;
+            }
+            else if(arr[low]<0 && arr[high]<0){//low is negetive and high is also negetive then high--
+                high--;
+            }
+            else{
+                low++;//else we will go towards end of the array
+            }
+        }
+    }
