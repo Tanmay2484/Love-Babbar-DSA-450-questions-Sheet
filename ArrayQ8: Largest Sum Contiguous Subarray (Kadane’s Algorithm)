@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+/* Largest Sum Contiguous Subarray (Kadane’s Algorithm)
+   
+   gfg article link:https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+   question Link:https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1
+    Input:
+    N = 5
+    Arr[] = {1,2,3,-2,5}
+    Output:
+    9
+    Explanation:
+    Max subarray sum is 9
+    of elements (1, 2, 3, -2, 5) which 
+    is a contiguous subarray.
+*/
+long long maxSubarraySum(int arr[], int n){
+        
+        // Let's start kadane's algorithm 
+        
+        //so atfirst we have to maintain two variable sum and maxi
+        //maxi will take the maximum sum and when sum <0 then sum =0
+        long long sum=0,maxi=INT_MIN;//or we can take also maxi=arr[0]
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            maxi=max(maxi,sum);
+            if(sum<0)
+                sum=0;
+        }
+        return maxi;
+        
+    }
