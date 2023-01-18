@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+/* cyclically rotate an array by one
+   
+   gfg article link: https://www.geeksforgeeks.org/c-program-cyclically-rotate-array-one/
+   question Link: https://practice.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1
+   Input:  arr[] = {1, 2, 3, 4, 5}
+   Output: arr[] = {5, 1, 2, 3, 4}
+*/
+void rotate(int arr[], int n)
+{  // rotate an array cyclically 
+   // store the first array element in variable
+   //then right shift and add the element last
+   int temp=arr[n-1];
+   for(int i=n-1;i>=0;i--){
+       arr[i]=arr[i-1];
+   }
+   arr[0]=temp;
+    
+}
