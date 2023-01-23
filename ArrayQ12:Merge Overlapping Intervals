@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+/* Merge Overlapping Intervals
+   
+   gfg article https://www.geeksforgeeks.org/merging-intervals/
+   question Link:https://practice.geeksforgeeks.org/problems/8a644e94faaa94968d8665ba9e0a80d1ae3e0a2d/1
+    Given a set of time intervals in any order,
+     merge all overlapping intervals into one and output the result
+      which should have only mutually exclusive intervals.
+*/
+ vector<vector<int>> overlappedInterval(vector<vector<int>>& intervals) {
+         //ver very important interview question
+         vector<vector<int>>mergeIntervals;
+         if(intervals.empty()) return mergeIntervals;
+         
+         sort(intervals.begin(),intervals.end());
+         vector<int>tempIntervals=intervals[0];//storing first pair
+         for(auto i:intervals){
+             if(i[0]<=tempIntervals[1]){//checking the pair[0] <= tempInt[1]
+                 tempIntervals[1]=max(tempIntervals[1],i[1]);
+             }
+             else{
+                 mergeIntervals.push_back(tempIntervals);
+                 tempIntervals=i;
+             }
+         }
+         mergeIntervals.push_back(tempIntervals);
+         return mergeIntervals;
+         
+    }
