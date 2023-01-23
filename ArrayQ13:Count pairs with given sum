@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+/* Count pairs with given sum
+   
+   gfg article https://www.geeksforgeeks.org/count-pairs-with-given-sum/
+   question Link:https://practice.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/1
+    Given a set of time intervals in any order,
+     merge all overlapping intervals into one and output the result
+      which should have only mutually exclusive intervals.
+*/
+   int getPairsCount(int arr[], int n, int k) {
+        unordered_map<int,int>check;
+        int ansTwice=0;
+        for(int i=0;i<n;i++){
+            check[arr[i]]++;
+        }
+        for(int i=0;i<n;i++){
+          // iterate through each element and increment the
+    // count (Notice that every pair is counted twice)
+            if(check.find(arr[i])!=check.end())
+                ansTwice+=check[k-arr[i]];
+            
+        // if (arr[i], arr[j]) pair satisfies the condition,
+        // then we need to ensure that the count is
+        // decreased by one such that the (arr[j], arr[i])
+        // pair is not considered
+            if (k - arr[i] == arr[i])
+                ansTwice--;
+        }
+        
+        return ansTwice/2;
+        
+    }
