@@ -1,0 +1,36 @@
+ /* Rearrange Array Alternately
+    question link: https://practice.geeksforgeeks.org/problems/-rearrange-array-alternately-1587115620/1
+    article link: https://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/
+    Input:
+    n = 6
+   arr[] = {1,2,3,4,5,6}
+   Output: 6 1 5 2 4 3
+ */
+void rearrange(long long *arr, int n) 
+    { 
+       // lets start with a two pointer with O(1) space and time O(n)
+       //this question has a trick to store two elements in one pos
+       // with a valuable formula for 1 2 3 4 5 array
+                                //    l       r   and me(max element)=max element+1
+        //so formula is *vvi* arr[i]=arr[i]+(arr[l] % me) * me 
+        // from this formula the array 1 2 3 4 5 the array will be converted 31 8 27 16 23
+        //from this converted array we can get the original array from arr[i]% me then we will get 1 2 3 4 5
+        //and when we did in the converted array arr[i]/me(max element) so we will get rearranged array
+        //so we will get the ans array
+    int max_idx = n - 1, min_idx = 0;
+    int max_elem = arr[n - 1] + 1;
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            arr[i] += (arr[max_idx] % max_elem) * max_elem;
+            max_idx--;
+        }
+        else {
+            arr[i] += (arr[min_idx] % max_elem) * max_elem;
+            min_idx++;
+        }
+    }
+    for (int i = 0; i < n; i++)
+        arr[i] = arr[i] / max_elem;
+
+       
+    }
