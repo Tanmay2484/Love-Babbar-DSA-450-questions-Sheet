@@ -1,0 +1,22 @@
+/* Subarray with 0 sum
+    question link: https://practice.geeksforgeeks.org/problems/subarray-with-0-sum-1587115621/1
+    article link: https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
+    Input:
+    5
+    4 2 -3 1 6
+
+    Output: 
+    Yes
+ */
+ bool subArrayExists(int arr[], int n)
+    {
+        unordered_set<int>s;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            if(sum==0 ||(s.find(sum)!=s.end()))//finding same sum from the set if exist it means 
+                return true;//it is subarray sum 0 exist so return ans;
+         s.insert(sum);
+        }
+        return false;
+    }
